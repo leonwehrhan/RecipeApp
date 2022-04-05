@@ -1,5 +1,6 @@
 from flask import render_template
 from recipes import app
+from recipes.forms import NewRecipeForm
 
 
 @app.route("/")
@@ -8,6 +9,7 @@ def home():
     return render_template('home.html')
 
 
-@app.route("/new")
+@app.route("/new", methods=['GET', 'POST'])
 def new():
-    return render_template('new_recipe.html')
+    form = NewRecipeForm()
+    return render_template('new_recipe.html', title='New', form=form)
