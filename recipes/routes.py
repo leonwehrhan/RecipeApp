@@ -1,5 +1,5 @@
 from flask import render_template
-from flaskblog import app
+from recipes import app
 
 
 @app.route("/")
