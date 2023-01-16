@@ -1,0 +1,2 @@
+Start Flask :
+`flask --app recipes run`
