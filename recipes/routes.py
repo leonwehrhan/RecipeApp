@@ -15,6 +15,9 @@ def new():
     form = NewRecipeForm()
     if form.validate_on_submit():
         recipe = Recipe(title=form.title.data,
+                        spices='',
+                        image='default.jpg',
+                        link='',
                         instructions=form.instructions.data)
         db.session.add(recipe)
         db.session.commit()
