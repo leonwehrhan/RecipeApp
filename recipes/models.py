@@ -27,4 +27,14 @@ class Ingredient(db.Model):
     unit = db.Column(db.String(8), nullable=False)
     ingredient = db.relationship('Recipe', secondary=RecipeIngredient.__table__, backref='ingredient')
 
-db.create_all()
+
+def init_db():
+    db.create_all()
+
+    sample_recipe = Recipe('Sample Recipe', '1. aa bb\n 2. bb cc', 'default.jpg', '', 'Potato\nSalt\nPepper')
+    db.session.add(sample_recipe)
+    db.session.commit()
+
+
+if __name__ == '__main__':
+    init_db()
