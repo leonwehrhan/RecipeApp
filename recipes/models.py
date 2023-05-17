@@ -11,11 +11,12 @@ class Recipe(db.Model):
     __tablename__ = 'recipes'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    spices = db.Column(db.String(500))
+    # spices = db.Column(db.String(500))
     instructions = db.Column(db.Text, nullable=False)
     image = db.Column(db.String(20), nullable=False, default='default.jpg')
     link = db.Column(db.String(100))
     #ingredients = db.relationship('Ingredient', secondary=RecipeIngredient.__table__, backref='recipes')
+    ingredients = db.Column(db.Text, nullable=False)
 
 
 class Ingredient(db.Model):

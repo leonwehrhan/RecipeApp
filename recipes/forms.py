@@ -8,8 +8,8 @@ class NewRecipeForm(FlaskForm):
                         validators=[DataRequired(), Length(min=2, max=100)])
     ingredients = TextAreaField('Ingredients',
                                 validators=[DataRequired()])
-    spices = StringField('Spices',
-                         validators=[Length(max=500)])
+    # spices = StringField('Spices',
+    #                     validators=[Length(max=500)])
     instructions = TextAreaField('Instructions',
                                  validators=[DataRequired()])
     submit = SubmitField('Submit')

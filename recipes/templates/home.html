@@ -7,14 +7,15 @@
   <img src="..." class="card-img-top placeholder-glow" alt="...">
 
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h5 class="card-title">{{ recipes[0].title }}</h5>
+    <p class="card-text">Some basic information about the recipe.</p>
     <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
       Show Recipe
     </a>
     <div class="collapse" id="collapseExample1">
       <div class="card card-body">
-        Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+        <p>{{recipes[0].ingredients}}</p>
+        <p>{{recipes[0].instructions}}</p>
       </div>
     </div>
   </div>
