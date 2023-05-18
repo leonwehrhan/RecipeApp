@@ -16,23 +16,26 @@ def new():
     form = NewRecipeForm()
     if form.validate_on_submit():
 
+        # get ingredients data from the form
         ingredients = form.ingredients.data
         ingredients_list = parse_ingredients(ingredients)
 
-        recipe = Recipe(title=form.title.data,
-                        image='default.jpg',
-                        instructions=form.instructions.data)
+        # make recipe object
+        r = Recipe(title=form.title.data,
+                   instructions=form.instructions.data)
 
+        # for every list item make association object
+        # then append ingredient via association
         for x in ingredients_list:
             name = x[0]
             quantity = x[1]
             unit =x [2]
 
-            j = Ingredient(name=name)
-            recipe.ingredients.append(j)
-            db.session.add(j)
+            a = RecipeIngredient(quantity=quantity, unit=unit)
+            a.ingredient = Ingredient(name=name)
+            r.ingredients.append(a)
         
-        db.session.add(recipe)
+        db.session.add(r)
         db.session.commit()
 
         flash('New recipe has been submitted', 'success')
