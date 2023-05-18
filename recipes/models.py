@@ -26,3 +26,9 @@ class Ingredient(db.Model):
     quantity = db.Column(db.Float, nullable=False)
     unit = db.Column(db.String(8), nullable=False)
     ingredient = db.relationship('Recipe', secondary=RecipeIngredient.__table__, backref='ingredient')
+
+
+class Unit(db.Model):
+    __tablename__ = 'units'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(60), nullable=False)
