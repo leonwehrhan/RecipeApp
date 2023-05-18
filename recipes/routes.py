@@ -45,6 +45,6 @@ def new():
         db.session.add(r)
         db.session.commit()
 
-        flash('New recipe has been submitted', 'success')
         return redirect(url_for('home'))
+    
     return render_template('new_recipe.html', title='New Recipe', form=form)
