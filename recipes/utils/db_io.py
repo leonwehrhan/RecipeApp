@@ -1,7 +1,7 @@
 import re
 
 
-units = ['g', 'mL', 'TBSP', 'tsp', 'Dose']
+units = ['kg', 'g', 'L', 'mL', 'TBSP', 'tsp', 'Dose', 'Pkg.']
 
 
 def parse_ingredients(s):
