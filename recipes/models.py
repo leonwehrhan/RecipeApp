@@ -6,6 +6,7 @@ class RecipeIngredient(db.Model):
     id = db.Column(db.Integer, primary_key=True, index=True)
     recipeId = db.Column(db.Integer, db.ForeignKey('recipes.id'))
     ingredientId = db.Column(db.Integer, db.ForeignKey('ingredient.id'))
+    unitId = db.Column(db.Integer, db.ForeignKey('units.id'))
 
 class Recipe(db.Model):
     __tablename__ = 'recipes'
