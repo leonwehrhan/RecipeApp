@@ -1,5 +1,5 @@
 from recipes import db
-from recipes.models import Recipe
+from recipes.models import Recipe, Ingredient, RecipeIngredient
 import os
 
 
@@ -11,8 +11,11 @@ db.create_all()
 sample_recipe = Recipe()
 sample_recipe.title = 'Sample Title'
 sample_recipe.instructions = '1. aa bb \n 2. bb cc dd'
-sample_recipe.image = ''
-sample_recipe.link = ''
-sample_recipe.ingredients = 'Potato \n Salt \n Pepper'
+
+for x in ['Potato', 'Salt']:
+    a = RecipeIngredient(quantity='1')
+    a.ingredient = Ingredient(name=x)
+    sample_recipe.ingredients.append(a)
+
 db.session.add(sample_recipe)
 db.session.commit()

@@ -4,29 +4,31 @@ from recipes import db
 class RecipeIngredient(db.Model):
     __tablename__ = 'recipeingredient'
     id = db.Column(db.Integer, primary_key=True, index=True)
-    recipeId = db.Column(db.Integer, db.ForeignKey('recipes.id'))
-    ingredientId = db.Column(db.Integer, db.ForeignKey('ingredient.id'))
-    unitId = db.Column(db.Integer, db.ForeignKey('units.id'))
+    recipeId = db.Column(db.Integer, db.ForeignKey('recipe_table.id'))
+    ingredientId = db.Column(db.Integer, db.ForeignKey('ingredient_table.id'))
+
+    quantity = db.Column(db.Float)
+    unit = db.Column(db.String(8))
+
+    recipe = db.relationship('Recipe', back_populates='ingredients')
+    ingredient = db.relationship('Ingredient', back_populates='recipes')
 
 class Recipe(db.Model):
-    __tablename__ = 'recipes'
+    __tablename__ = 'recipe_table'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     # spices = db.Column(db.String(500))
     instructions = db.Column(db.Text, nullable=False)
-    image = db.Column(db.String(20), nullable=False, default='default.jpg')
+    image = db.Column(db.String(20))
     link = db.Column(db.String(100))
-    #ingredients = db.relationship('Ingredient', secondary=RecipeIngredient.__table__, backref='recipes')
-    ingredients = db.Column(db.Text, nullable=False)
+    ingredients = db.relationship('RecipeIngredient', back_populates='recipe')
 
 
 class Ingredient(db.Model):
-    __tablename__ = 'ingredient'
+    __tablename__ = 'ingredient_table'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(60), nullable=False)
-    quantity = db.Column(db.Float, nullable=False)
-    unit = db.Column(db.String(8), nullable=False)
-    ingredient = db.relationship('Recipe', secondary=RecipeIngredient.__table__, backref='ingredient')
+    recipes = db.relationship('RecipeIngredient', back_populates='ingredient')
 
 
 class Unit(db.Model):
