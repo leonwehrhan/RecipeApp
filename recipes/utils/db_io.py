@@ -1,7 +1,7 @@
 import re
 
 
-units = ['g', 'mL', 'TBSP', 'tsp']
+units = ['g', 'mL', 'TBSP', 'tsp', 'Dose']
 
 
 def parse_ingredients(s):
@@ -29,7 +29,7 @@ def parse_ingredients(s):
         li = line.split()
 
         # any number at the beginning of the line will be stored as quantity
-        q = re.search(r'\d+\.\d+|(?<=angle\s)\d+', li[0])
+        q = re.search(r'[-+]?(\d+(\.\d*)?|\.\d+)', li[0])
         if q:
             quantity = q[0]
             li.remove(li[0])
@@ -45,4 +45,6 @@ def parse_ingredients(s):
 
         # add to ingredients list
         ings.append((name, quantity, unit))
+    
+    return ings
 

@@ -2,7 +2,10 @@ Start Flask :
 `flask --app recipes run`
 
 Initialize DataBase:
-
 In folder RecipeApp: python
 >>> from recipes import db
 >>> db.create_all()
+
+Pytest:
+in folder where the tests folder is (e.g. utils):
+pytest
