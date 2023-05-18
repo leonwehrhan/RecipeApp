@@ -1,4 +1,5 @@
 import re
+from recipes.models import Recipe, Ingredient, RecipeIngredient
 
 
 units = ['kg', 'g', 'L', 'mL', 'TBSP', 'tsp', 'Dose', 'Pkg.']
@@ -48,3 +49,22 @@ def parse_ingredients(s):
     
     return ings
 
+
+def recipe_from_file(db, file):
+    '''
+    Read recipe with ingredients and instructions from file and add to databank.
+
+    Parameters
+    ----------
+    db : SQLAlchemy
+        Databank.
+    file : str
+        Path to file.
+    '''
+    ingredients = []
+    instructions = []
+
+    with open(file, 'r') as f:
+        pass
+    
+    r = Recipe()
