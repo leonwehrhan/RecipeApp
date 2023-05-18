@@ -32,8 +32,15 @@ def new():
             unit =x [2]
 
             a = RecipeIngredient(quantity=quantity, unit=unit)
-            a.ingredient = Ingredient(name=name)
-            r.ingredients.append(a)
+
+            # check if ingredient already exists
+            j = db.session.query(Ingredient).filter_by(name=name).first()
+            if j:
+                a.ingredient = j
+                r.ingredients.append(a)
+            else:
+                a.ingredient = Ingredient(name=name)
+                r.ingredients.append(a)
         
         db.session.add(r)
         db.session.commit()
